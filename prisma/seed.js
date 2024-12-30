@@ -20,7 +20,7 @@ async function main() {
       email: 'leon@lloyds-digital.com',
       password: 'dcd3223d34ae110efd4ee1b71065ef9b567099e22d8002eed4f8c25812c564a8',
       salt: '04f6f77cc70e66f697d1c9e36ed0b280',
-      role: 1,
+      role: 0,
     },
   });
 

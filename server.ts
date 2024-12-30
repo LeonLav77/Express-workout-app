@@ -16,6 +16,7 @@ app.use(function(req, res, next) {
         res.setHeader('Access-Control-Max-Age', '3600');
         res.sendStatus(200);
         next();
+        return;
     }
 
     res.setHeader('Access-Control-Allow-Origin', '*');

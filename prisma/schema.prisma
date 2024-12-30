@@ -15,7 +15,7 @@ model User {
   salt        String
   name        String? 
   loginToken  String?         @unique
-  completedWorkouts CompletedWorkout[]  // Establishes the relation to CompletedWorkout
+  completedWorkouts CompletedWorkout[]  // Relation to CompletedWorkout
 }
 
 model Exercise {
@@ -32,7 +32,7 @@ model Workout {
   description String
   image       String?
   exercises   WorkoutExercise[]
-  completedWorkouts CompletedWorkout[]  // Establishes the relation to CompletedWorkout
+  completedWorkouts CompletedWorkout[]  // Relation to CompletedWorkout
 }
 
 model WorkoutExercise {
@@ -41,19 +41,19 @@ model WorkoutExercise {
   reps        Int
   order       Int
 
-  workout     Workout      @relation(fields: [workoutId], references: [id])
-  exercise    Exercise     @relation(fields: [exerciseId], references: [id])
+  workout     Workout      @relation(fields: [workoutId], references: [id], onDelete: Cascade) // Cascade on delete
+  exercise    Exercise     @relation(fields: [exerciseId], references: [id], onDelete: Cascade) // Cascade on delete
 
-  @@unique([workoutId, order]) // Ensures unique ordering for exercises within the same workout
+  @@unique([workoutId, order]) // Unique ordering for exercises within a workout
 }
 
 model CompletedWorkout {
   id          Int       @id @default(autoincrement())
   userId      Int
   workoutId   Int
-  duration    Int?      // Duration or time taken in seconds (for example)
+  duration    Int?      // Duration in seconds
   completedAt DateTime  @default(now())
 
-  user        User      @relation(fields: [userId], references: [id])
-  workout     Workout   @relation(fields: [workoutId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade) // Cascade on delete
+  workout     Workout   @relation(fields: [workoutId], references: [id], onDelete: Cascade) // Cascade on delete
 }

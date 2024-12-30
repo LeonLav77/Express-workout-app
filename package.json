@@ -6,7 +6,9 @@
     "start": "node server.js",
     "build": "tsc",
     "dev": "tsx server.ts",
-    "watch": "nodemon --watch app --ext ts --exec tsx server.ts"
+    "watch": "nodemon --watch app --ext ts --exec tsx server.ts",
+    "seed": "node prisma/seed.js",
+    "migrate": "npx prisma migrate dev && node prisma/seed.js"
   },
   "keywords": [],
   "author": "",

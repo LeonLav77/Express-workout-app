@@ -14,6 +14,7 @@ class UserController {
 
     public async index(req: Request, res: Response): Promise<void> {
         const allUsers: User[] = await this.userRepository.getAllUsers();
+     
         res.send(allUsers);
     }
 
@@ -110,13 +111,38 @@ class UserController {
         res.send({ message: 'Logged in successfully', token: loginToken });
     }
 
+    public async getUserByToken(req: Request, res: Response): Promise<void> {
+        const token: string = req.params.token;
+        console.log(token);
+        const user: User | null = await this.userRepository.getUserByToken(token);
+
+        if (!user) {
+            res.status(404).send('User not found');
+            return;
+        }
+
+        res.send(user);
+    }
+
+    public async getCompletedWorkouts(req: Request, res: Response): Promise<void> {
+        const token = req.headers.token as string;
+        console.log(token);
+        if (!token) {
+            res.status(400).json({ message: 'Token is required' });
+            return;
+        }
+        const completedWorkouts = await this.userRepository.getCompletedWorkoutsByToken(token);
+        console.log(completedWorkouts);
+        res.send(completedWorkouts);
+    }
+
     private hashPassword(password: string, salt: string): string {
         const hash = crypto.createHmac('sha256', salt);
         hash.update(password);
         return hash.digest('hex');
     }
 
-    public async verifyUserPassword(email: string, password: string): Promise<boolean> {
+    private async verifyUserPassword(email: string, password: string): Promise<boolean> {
         const user = await this.userRepository.getUserByEmail(email);
         if (!user) return false;
 

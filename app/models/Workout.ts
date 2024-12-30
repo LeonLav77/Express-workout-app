@@ -6,4 +6,5 @@ export interface Workout {
     description: string;
     image: string | null;
     exercises : Exercise[] | null;
+    
 }

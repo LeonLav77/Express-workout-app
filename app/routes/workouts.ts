@@ -20,6 +20,10 @@ router.post('/:id/exercises', (req: Request, res: Response) => {
     workoutController.addExerciseToWorkout(req, res);
 });
 
+router.post('/:id/complete', (req: Request, res: Response) => {
+    workoutController.completeWorkout(req, res);
+});
+
 router.put('/:id', (req: Request, res: Response) => {
     workoutController.updateWorkout(req, res);
 });

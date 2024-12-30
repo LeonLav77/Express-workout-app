@@ -1,10 +1,13 @@
 
 import { Request, Response } from 'express';
 import WorkoutRepository from '../repositories/WorkoutRepository';
+import UserRepository from '../repositories/UserRepository';
+import { CompletedWorkout } from '../models/CompletedWorkout';
 
 class WorkoutController {
     private workoutRepository = new WorkoutRepository();
-    
+    private UserRepository = new UserRepository();
+
     constructor() {}
     
 
@@ -66,6 +69,35 @@ class WorkoutController {
         }
         
         res.json(workout);
+    }
+
+    public async completeWorkout(req: Request, res: Response): Promise<void> {
+        const token = req.headers.token as string;
+
+        if (!token) {
+            res.status(400).json({ message: 'Token is required' });
+            return;
+        }
+
+        const user = await this.UserRepository.getUserByToken(token);
+
+        if (!user) {
+            res.status(404).json({ message: 'User not found' });
+            return;
+        }
+
+        const workout = await this.workoutRepository.getWorkoutById(req.params.id);
+
+        if (!workout) {
+            res.status(404).json({ message: 'Workout not found' });
+            return;
+        }
+
+        const { duration } = req.body;
+
+        const completedWorkout = await this.workoutRepository.completeWorkout(user.id, workout.id, duration);
+
+        res.json(completedWorkout);
     }
 
 }

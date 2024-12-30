@@ -37,6 +37,9 @@ class UserRepository {
             where: {
                 id: parseInt(id),
             },
+            include: {
+                completedWorkouts: true,  // Including CompletedWorkout data
+            },    
         });
 
         return user as User | null;
@@ -87,6 +90,48 @@ class UserRepository {
                 loginToken: token,
             },
         });
+    }
+
+    async getUserByToken(token: string): Promise<User | null> {
+        const user = await prisma.user.findFirst({
+          where: {
+            loginToken: token,
+          },
+          include: {
+            completedWorkouts: {
+                include: {
+                    workout: {
+                        include: {
+                            exercises: {
+                                include: {
+                                    exercise: true,
+                                },
+                            },
+                        },
+                    }, 
+                },
+            }, 
+         },
+        });
+      
+        return user || null; 
+      }
+
+      async getCompletedWorkoutsByToken(token: string): Promise<any> {
+        const user = await prisma.user.findFirst({
+            where: {
+                loginToken: token,
+            },
+            include: {
+                completedWorkouts: {
+                    include: {
+                        workout: true, 
+                    },
+                },
+            },
+        });
+
+        return user ? user.completedWorkouts : null;
     }
 }
 

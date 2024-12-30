@@ -1,5 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,13 +8,14 @@ datasource db {
 }
 
 model User {
-  id          Int     @id @default(autoincrement())
-  email       String  @unique
-  role        Int     @default(0)
+  id          Int             @id @default(autoincrement())
+  email       String          @unique
+  role        Int             @default(0)
   password    String
   salt        String
-  name        String?
-  loginToken  String?
+  name        String? 
+  loginToken  String?         @unique
+  completedWorkouts CompletedWorkout[]  // Establishes the relation to CompletedWorkout
 }
 
 model Exercise {
@@ -33,6 +32,7 @@ model Workout {
   description String
   image       String?
   exercises   WorkoutExercise[]
+  completedWorkouts CompletedWorkout[]  // Establishes the relation to CompletedWorkout
 }
 
 model WorkoutExercise {
@@ -45,4 +45,15 @@ model WorkoutExercise {
   exercise    Exercise     @relation(fields: [exerciseId], references: [id])
 
   @@unique([workoutId, order]) // Ensures unique ordering for exercises within the same workout
+}
+
+model CompletedWorkout {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  workoutId   Int
+  duration    Int?      // Duration or time taken in seconds (for example)
+  completedAt DateTime  @default(now())
+
+  user        User      @relation(fields: [userId], references: [id])
+  workout     Workout   @relation(fields: [workoutId], references: [id])
 }

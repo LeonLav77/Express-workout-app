@@ -1,5 +1,5 @@
 
-import { PrismaClient } from '@prisma/client';
+import { CompletedWorkout, PrismaClient } from '@prisma/client';
 import { Workout } from '../models/Workout';
 
 const prisma = new PrismaClient();
@@ -54,9 +54,31 @@ class WorkoutRepository {
             where: {
                 id: parseInt(id),
             },
+            include: {
+                exercises: {
+                    include: {
+                        exercise: true, // Include exercise details
+                    },
+                },
+            },
         });
-
-        return workout as Workout | null;
+    
+        if (!workout) return null;
+    
+        return {
+            id: workout.id,
+            name: workout.name,
+            description: workout.description,
+            image: workout.image,
+            exercises: workout.exercises.map(e => ({
+                id: e.exercise.id,
+                name: e.exercise.name,
+                description: e.exercise.description,
+                image: e.exercise.image,
+                reps: e.reps,
+                order: e.order,
+            })) || null,
+        } as Workout;
     }
 
     async updateWorkout(
@@ -111,6 +133,18 @@ class WorkoutRepository {
         });
 
         return workout as Workout | null;
+    }
+
+    async completeWorkout(userId: number, workoutId : number, duration: number): Promise<CompletedWorkout | null> {
+        const completedWorkout = await prisma.completedWorkout.create({
+            data: {
+                userId,
+                workoutId,
+                duration,
+            },
+        });
+
+        return completedWorkout as CompletedWorkout | null;
     }
 }
 

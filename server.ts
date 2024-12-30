@@ -1,6 +1,8 @@
 import express, { Application } from 'express';
 import indexRouter from './app/routes/index';
 import usersRouter from './app/routes/users';
+import exercisesRouter from './app/routes/exercises';
+import workoutsRouter from './app/routes/workouts';
 
 const app: Application = express();
 const PORT: number = 3000;
@@ -28,6 +30,8 @@ app.use(express.json());
 // Use routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/exercises', exercisesRouter);
+app.use('/workouts', workoutsRouter);
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

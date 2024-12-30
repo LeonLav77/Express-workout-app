@@ -12,7 +12,7 @@ app.use(function(req, res, next) {
     if (req.method === 'OPTIONS') {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization,Token');
         res.setHeader('Access-Control-Max-Age', '3600');
         res.sendStatus(200);
         next();

@@ -15,7 +15,6 @@ class UnsplashApiHandler {
             let imageUrl = unsplashResponse.data.results[0]?.urls?.regular;
             
             if (!imageUrl) {
-                console.warn('No image found for the exercise, using a placeholder');
                 imageUrl = 'https://via.placeholder.com/500';
             } else {
                 imageUrl = `${imageUrl}?w=500&h=500&fit=crop`;
@@ -23,7 +22,7 @@ class UnsplashApiHandler {
 
             return imageUrl;
         } catch (error) {
-            console.error('Error fetching image from Unsplash:', error);
+            return 'https://via.placeholder.com/500';
         }
 
     }

@@ -34,8 +34,8 @@ class UserController {
             return;
         }
 
-        const salt = crypto.randomBytes(16).toString('hex'); // Create random salt
-        const hashedPassword = this.hashPassword(password, salt); // Hash password with salt
+        const salt = crypto.randomBytes(16).toString('hex');
+        const hashedPassword = this.hashPassword(password, salt);
 
         const newUser: User = await this.userRepository.createNewUser(
             name,
@@ -85,6 +85,7 @@ class UserController {
         }
 
         const deletedUser: User = await this.userRepository.deleteUser(userId);
+
         res.send(deletedUser);
     }
 
@@ -124,13 +125,13 @@ class UserController {
 
     public async getCompletedWorkouts(req: Request, res: Response): Promise<void> {
         const token = req.headers.token as string;
-        console.log(token);
+
         if (!token) {
             res.status(400).json({ message: 'Token is required' });
             return;
         }
         const completedWorkouts = await this.userRepository.getCompletedWorkoutsByToken(token);
-        console.log(completedWorkouts);
+
         res.send(completedWorkouts);
     }
 

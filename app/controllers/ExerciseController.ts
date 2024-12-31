@@ -1,7 +1,6 @@
 
 import { Request, Response } from 'express';
 import ExerciseRepository from '../repositories/ExerciseRepository';
-import axios from 'axios';
 import UnsplashApiHandler from '../services/UnsplashApiHandler';
 
 class ExerciseController {

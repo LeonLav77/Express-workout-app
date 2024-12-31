@@ -69,7 +69,7 @@ async function main() {
     data: {
       name: 'Leg Workout',
       description: 'A workout for legs and lower body strength.',
-      image: 'leg_workout.jpg',
+      image: 'https://images.pexels.com/photos/5038850/pexels-photo-5038850.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
   });
 
@@ -77,7 +77,7 @@ async function main() {
     data: {
       name: 'Arm Workout',
       description: 'A workout for arms and upper body strength.',
-      image: 'arm_workout.jpg',
+      image: 'https://images.pexels.com/photos/5327505/pexels-photo-5327505.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
   });
 
@@ -85,7 +85,7 @@ async function main() {
     data: {
       name: 'Core Workout',
       description: 'A workout for core and abdominal strength.',
-      image: 'core_workout.jpg',
+      image: 'https://images.pexels.com/photos/6739040/pexels-photo-6739040.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
   });
 

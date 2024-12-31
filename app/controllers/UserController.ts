@@ -37,6 +37,12 @@ class UserController {
         const salt = crypto.randomBytes(16).toString('hex');
         const hashedPassword = this.hashPassword(password, salt);
 
+        const user = await this.userRepository.getUserByEmail(email);
+        if (user) {
+            res.status(418).send('User already exists');
+            return;
+        }
+
         const newUser: User = await this.userRepository.createNewUser(
             name,
             email,

@@ -24,11 +24,11 @@ async function main() {
   });
 
   const legExerciseData = [
-    { name: 'Squat', description: 'Basic squat exercise for legs.', image: 'squat.jpg' },
-    { name: 'Lunge', description: 'Lunges for leg strength and balance.', image: 'lunge.jpg' },
-    { name: 'Leg Press', description: 'Leg press for lower body strength.', image: 'leg_press.jpg' },
-    { name: 'Deadlift', description: 'Deadlift for hamstrings and glutes.', image: 'deadlift.jpg' },
-    { name: 'Step-Up', description: 'Step-ups for legs and core.', image: 'step_up.jpg' },
+    { name: 'Squat', description: 'Basic squat exercise for legs.', image: 'https://images.pexels.com/photos/371049/pexels-photo-371049.jpeg?auto=compress&cs=tinysrgb&w=600' },
+    { name: 'Lunge', description: 'Lunges for leg strength and balance.', image: 'https://images.pexels.com/photos/5067743/pexels-photo-5067743.jpeg?auto=compress&cs=tinysrgb&w=600' },
+    { name: 'Leg Press', description: 'Leg press for lower body strength.', image: 'https://images.pexels.com/photos/28076/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600' },
+    { name: 'Deadlift', description: 'Deadlift for hamstrings and glutes.', image: 'https://images.pexels.com/photos/5759751/pexels-photo-5759751.jpeg?auto=compress&cs=tinysrgb&w=600' },
+    { name: 'Step-Up', description: 'Step-ups for legs and core.', image: 'https://images.pexels.com/photos/7869651/pexels-photo-7869651.jpeg?auto=compress&cs=tinysrgb&w=600' },
   ];
 
   const legExercises = [];
@@ -38,11 +38,11 @@ async function main() {
   }
 
   const armExerciseData = [
-    { name: 'Push-Up', description: 'Push-ups for upper body strength.', image: 'push_up.jpg' },
-    { name: 'Tricep Dip', description: 'Tricep dips for arm toning.', image: 'tricep_dip.jpg' },
-    { name: 'Pull-Up', description: 'Pull-ups for arm and back strength.', image: 'pull_up.jpg' },
-    { name: 'Dumbbell Curl', description: 'Bicep curls with dumbbells.', image: 'dumbbell_curl.jpg' },
-    { name: 'Hammer Curl', description: 'Bicep hammer curls for forearms.', image: 'hammer_curl.jpg' },
+    { name: 'Push-Up', description: 'Push-ups for upper body strength.', image: 'https://images.pexels.com/photos/176782/pexels-photo-176782.jpeg?auto=compress&cs=tinysrgb&w=500&h=500' },
+    { name: 'Tricep Dip', description: 'Tricep dips for arm toning.', image: 'https://images.pexels.com/photos/5496589/pexels-photo-5496589.jpeg?auto=compress&cs=tinysrgb&w=500&h=500' },
+    { name: 'Pull-Up', description: 'Pull-ups for arm and back strength.', image: 'https://images.pexels.com/photos/8692269/pexels-photo-8692269.jpeg?auto=compress&cs=tinysrgb&w=500&h=500' },
+    { name: 'Dumbbell Curl', description: 'Bicep curls with dumbbells.', image: 'https://images.pexels.com/photos/3289711/pexels-photo-3289711.jpeg?auto=compress&cs=tinysrgb&w=500&h=500' },
+    { name: 'Hammer Curl', description: 'Bicep hammer curls for forearms.', image: 'https://images.pexels.com/photos/4506073/pexels-photo-4506073.jpeg?auto=compress&cs=tinysrgb&w=500&h=500' },
   ];
 
   const armExercises = [];
@@ -52,11 +52,11 @@ async function main() {
   }
 
   const coreExerciseData = [
-    { name: 'Plank', description: 'Plank for core stability.', image: 'plank.jpg' },
-    { name: 'Sit-Up', description: 'Sit-ups for abdominal strength.', image: 'sit_up.jpg' },
-    { name: 'Russian Twist', description: 'Twists for oblique muscles.', image: 'russian_twist.jpg' },
-    { name: 'Leg Raise', description: 'Leg raises for lower abs.', image: 'leg_raise.jpg' },
-    { name: 'Mountain Climbers', description: 'Mountain climbers for cardio and core.', image: 'mountain_climbers.jpg' },
+    { name: 'Plank', description: 'Plank for core stability.', image: 'https://images.pexels.com/photos/3768901/pexels-photo-3768901.jpeg?auto=compress&cs=tinysrgb&w=600' },
+    { name: 'Sit-Up', description: 'Sit-ups for abdominal strength.', image: 'https://images.pexels.com/photos/4047040/pexels-photo-4047040.jpeg?auto=compress&cs=tinysrgb&w=600' },
+    { name: 'Russian Twist', description: 'Twists for oblique muscles.', image: 'https://images.pexels.com/photos/5128466/pexels-photo-5128466.jpeg?auto=compress&cs=tinysrgb&w=600' },
+    { name: 'Leg Raise', description: 'Leg raises for lower abs.', image: 'https://images.pexels.com/photos/5128466/pexels-photo-5128466.jpeg?auto=compress&cs=tinysrgb&w=600' },
+    { name: 'Mountain Climbers', description: 'Mountain climbers for cardio and core.', image: 'https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=600' },
   ];
 
   const coreExercises = [];

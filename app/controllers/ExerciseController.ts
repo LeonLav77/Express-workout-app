@@ -1,9 +1,12 @@
 
 import { Request, Response } from 'express';
 import ExerciseRepository from '../repositories/ExerciseRepository';
+import axios from 'axios';
+import UnsplashApiHandler from '../services/UnsplashApiHandler';
 
 class ExerciseController {
     private exerciseRepository = new ExerciseRepository();
+    private unsplashApiHandler = new UnsplashApiHandler();
     
     constructor() {}
     
@@ -37,9 +40,17 @@ class ExerciseController {
     }
 
     public async createNewExercise(req: Request, res: Response): Promise<void> {
-        const { name, description, image } = req.body;
-        const exercise = await this.exerciseRepository.createNewExercise(name, description, image);
-        
+        const { name, image, description } = req.body;
+        let imageUrl;
+
+        if(image === undefined || image === '' || image === null) {
+            imageUrl = await this.unsplashApiHandler.fetchPhoto(name);
+        }else{
+            imageUrl = image;
+        }
+
+        const exercise = await this.exerciseRepository.createNewExercise(name, description, imageUrl);
+            
         res.json(exercise);
     }
 }

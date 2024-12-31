@@ -118,7 +118,6 @@ class UserController {
 
     public async getUserByToken(req: Request, res: Response): Promise<void> {
         const token: string = req.params.token;
-        console.log(token);
         const user: User | null = await this.userRepository.getUserByToken(token);
 
         if (!user) {

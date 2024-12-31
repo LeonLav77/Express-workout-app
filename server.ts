@@ -7,7 +7,6 @@ import workoutsRouter from './app/routes/workouts';
 const app: Application = express();
 const PORT: number = 3000;
 
-// CORS Middleware
 app.use(function(req, res, next) {
     if (req.method === 'OPTIONS') {
         res.setHeader('Access-Control-Allow-Origin', '*');

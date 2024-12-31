@@ -32,5 +32,9 @@ router.delete('/:id', (req: Request, res: Response) => {
     workoutController.deleteWorkout(req, res);
 });
 
+router.delete('/:id/exercises', (req: Request, res: Response) => {
+    workoutController.deleteAllExercisesFromWorkout(req, res);
+});
+
 
 export default router;

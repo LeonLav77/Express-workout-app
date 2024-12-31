@@ -100,6 +100,16 @@ class WorkoutController {
         res.json(completedWorkout);
     }
 
+    public async deleteAllExercisesFromWorkout(req: Request, res: Response): Promise<void> {
+        const workout = await this.workoutRepository.deleteAllExercisesFromWorkout(req.params.id);
+        
+        if (!workout) {
+            res.status(404).json({ message: 'Workout not found' });
+            return;
+        }
+        
+        res.json(workout);
+    }
 }
 
 export default WorkoutController;

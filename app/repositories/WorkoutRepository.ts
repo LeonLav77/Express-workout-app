@@ -26,8 +26,8 @@ class WorkoutRepository {
                 name: e.exercise.name,
                 description: e.exercise.description,
                 image: e.exercise.image,
-                reps: e.reps, // Include reps
-                order: e.order, // Include order
+                reps: e.reps,
+                order: e.order,
             })) || null,
         })) as Workout[];
     }
@@ -57,7 +57,7 @@ class WorkoutRepository {
             include: {
                 exercises: {
                     include: {
-                        exercise: true, // Include exercise details
+                        exercise: true,
                     },
                 },
             },
@@ -145,6 +145,21 @@ class WorkoutRepository {
         });
 
         return completedWorkout as CompletedWorkout | null;
+    }
+
+    async deleteAllExercisesFromWorkout(id: string): Promise<Workout | null> {
+        const workout = await prisma.workout.update({
+            where: {
+                id: parseInt(id),
+            },
+            data: {
+                exercises: {
+                    deleteMany: {},
+                },
+            },
+        });
+
+        return workout as Workout | null;
     }
 }
 

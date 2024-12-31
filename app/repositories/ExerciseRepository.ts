@@ -55,7 +55,7 @@ class ExerciseRepository {
             include: {
                 workouts: {
                     include: {
-                        workout: true, // Fetch the associated workout details
+                        workout: true,
                     },
                 },
             },

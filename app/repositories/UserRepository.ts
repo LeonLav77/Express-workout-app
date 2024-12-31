@@ -38,7 +38,7 @@ class UserRepository {
                 id: parseInt(id),
             },
             include: {
-                completedWorkouts: true,  // Including CompletedWorkout data
+                completedWorkouts: true,
             },    
         });
 

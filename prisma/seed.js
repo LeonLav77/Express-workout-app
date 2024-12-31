@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Create Users
   const admin = await prisma.user.create({
     data: {
       name: 'Admin',
@@ -24,7 +23,6 @@ async function main() {
     },
   });
 
-  // Create Leg Exercises
   const legExerciseData = [
     { name: 'Squat', description: 'Basic squat exercise for legs.', image: 'squat.jpg' },
     { name: 'Lunge', description: 'Lunges for leg strength and balance.', image: 'lunge.jpg' },
@@ -39,7 +37,6 @@ async function main() {
     legExercises.push(createdExercise);
   }
 
-  // Create Arm Exercises
   const armExerciseData = [
     { name: 'Push-Up', description: 'Push-ups for upper body strength.', image: 'push_up.jpg' },
     { name: 'Tricep Dip', description: 'Tricep dips for arm toning.', image: 'tricep_dip.jpg' },
@@ -54,7 +51,6 @@ async function main() {
     armExercises.push(createdExercise);
   }
 
-  // Create Core Exercises
   const coreExerciseData = [
     { name: 'Plank', description: 'Plank for core stability.', image: 'plank.jpg' },
     { name: 'Sit-Up', description: 'Sit-ups for abdominal strength.', image: 'sit_up.jpg' },
@@ -69,7 +65,6 @@ async function main() {
     coreExercises.push(createdExercise);
   }
 
-  // Create Workouts
   const legWorkout = await prisma.workout.create({
     data: {
       name: 'Leg Workout',
@@ -94,7 +89,6 @@ async function main() {
     },
   });
 
-  // Link Exercises to Leg Workout
   await prisma.workoutExercise.createMany({
     data: [
       { workoutId: legWorkout.id, exerciseId: legExercises[0].id, reps: 10, order: 1 },
@@ -105,7 +99,6 @@ async function main() {
     ],
   });
 
-  // Link Exercises to Arm Workout
   await prisma.workoutExercise.createMany({
     data: [
       { workoutId: armWorkout.id, exerciseId: armExercises[0].id, reps: 10, order: 1 },
@@ -116,7 +109,6 @@ async function main() {
     ],
   });
 
-  // Link Exercises to Core Workout
   await prisma.workoutExercise.createMany({
     data: [
       { workoutId: coreWorkout.id, exerciseId: coreExercises[0].id, reps: 10, order: 1 },

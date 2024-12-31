@@ -1,5 +1,3 @@
-// src/controllers/UserController.ts
-
 import { Request, Response } from 'express';
 import crypto from 'crypto';
 import UserRepository from '../repositories/UserRepository';
@@ -58,8 +56,8 @@ class UserController {
             return;
         }
 
-        const salt = crypto.randomBytes(16).toString('hex'); // Create random salt
-        const hashedPassword = this.hashPassword(password, salt); // Hash password with salt
+        const salt = crypto.randomBytes(16).toString('hex'); 
+        const hashedPassword = this.hashPassword(password, salt);
 
         const updatedUser: User = await this.userRepository.updateUser(
             userId,

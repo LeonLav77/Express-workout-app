@@ -1,8 +1,13 @@
 import express, { Application } from 'express';
-import indexRouter from './app/routes/index';
 import usersRouter from './app/routes/users';
 import exercisesRouter from './app/routes/exercises';
 import workoutsRouter from './app/routes/workouts';
+import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app: Application = express();
 const PORT: number = 3000;
@@ -27,11 +32,17 @@ app.use(function(req, res, next) {
 // Middleware to parse JSON
 app.use(express.json());
 
-// Use routes
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/exercises', exercisesRouter);
 app.use('/workouts', workoutsRouter);
+
+const angularDistPath = path.join(__dirname, 'dist/angular-projekt/browser');
+app.use(express.static(angularDistPath));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(angularDistPath, 'index.html'));
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
